@@ -1,0 +1,17 @@
+--Given three tables: salesperson, company, orders.
+--Output all the names in the table salesperson, who didn’t have sales to company 'RED'.
+
+
+--Write your MySQL query statement below
+-- com_id for comapny name 'RED' from company table
+--from order table get sales_ids where company name is not 'RED'
+--using salepersons get name  except for given sales ids
+
+select s.name
+from salesperson s
+where s.sales_id not in
+  (select o.sales_id
+  from orders o
+  where o.com_id =
+   (select com_id from company c where c.name='RED')
+   )
