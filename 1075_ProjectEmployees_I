@@ -1,0 +1,21 @@
+--https://leetcode.com/problems/project-employees-i/
+
+--Write an SQL query that reports the average experience years of all
+--the employees for each project, rounded to 2 digits.
+
+
+--# Write your MySQL query statement below
+select p.project_id, round(avg(e.experience_years),2) as average_years
+from project p
+join employee e
+on p.employee_id = e.employee_id
+group by p.project_id
+
+-- other solutions [this is faster than above]
+SELECT A.project_id, round(avg(A.experience_years), 2) as average_years FROM
+(SELECT p.project_id, p.employee_id, e.experience_years
+ FROM Project p
+ INNER JOIN Employee e
+ ON p.employee_id = e.employee_id) as A
+GROUP BY A.project_id
+
