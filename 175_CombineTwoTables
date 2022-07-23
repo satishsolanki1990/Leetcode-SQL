@@ -30,7 +30,15 @@ FirstName, LastName, City, State
 */
 
 --# Write your MySQL query statement below
-select p.FirstName, p.LastName, a.City, a.State
-from person p
-left join address a
-on p.PersonId = a.PersonId
+/* Write your PL/SQL query statement below */
+-- either left or right join. because we want all person names even if it is not present in address table
+-- left join: p,a
+-- right join: a, p
+
+select p.firstname, p.lastname, a.city, a.state 
+from Person p
+left join Address a on p.personId = a.personId;
+
+-- select p.firstname, p.lastname, a.city, a.state 
+-- from Address a
+-- right join Person p  on p.personId = a.personId;
