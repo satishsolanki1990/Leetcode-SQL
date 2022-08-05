@@ -19,6 +19,13 @@ Given the Employee table, write a SQL query that finds out employees who earn mo
 */
 
 # Write your MySQL query statement below
+
+select emp.name as Employee
+from employee emp, employee mgr 
+where emp.salary > (select mgr.salary where mgr.id = emp.managerId) ;
+
+
+
 # method 1: self join using where clause
 select
     A.name as Employee
