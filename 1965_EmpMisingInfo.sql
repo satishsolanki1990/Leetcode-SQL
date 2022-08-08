@@ -81,8 +81,10 @@ order by employee_id
 
 
 
-
-
-
-
-
+select cmb.employee_id from 
+(select e.employee_id from Employees e
+  where e.employee_id not in (select employee_id from Salaries)
+Union
+ select s.employee_id from Salaries s
+  where s.employee_id not in (select employee_id from Employees)) cmb
+order by employee_id
